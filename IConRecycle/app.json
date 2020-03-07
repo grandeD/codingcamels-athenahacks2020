@@ -1,19 +1,31 @@
 {
-  "name": "rngooglevisionapi-1400",
-  "description": "A blueprint for React Native apps using Expo. This django application was built with Crowdbotics www.crowdbotics.com",
-  "repository": "https://github.com/crowdbotics-apps/rngooglevisionapi-1400",
-  "keywords": [
-    "mobile_app",
-    "react_native_expo"
-  ],
-  "env": {
-    "DEBUG_COLLECTSTATIC": "1"
-  },
-  "addons": [
-    "heroku-postgresql:hobby-dev",
-    "sendgrid:starter"
-  ],
-  "scripts": {
-    "postdeploy": "./backend/postdeploy.sh"
+  "expo": {
+    "name": "Tab Navigation Template",
+    "slug": "IConRecycle",
+    "privacy": "public",
+    "sdkVersion": "36.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "myapp",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    }
   }
 }
