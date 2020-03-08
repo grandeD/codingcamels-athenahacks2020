@@ -11,6 +11,11 @@ export default class LinkScreen extends Component {
 		this.setState({ isModalVisible: !this.state.isModalVisible });
 	};
 
+	changeScreen = () => {
+		//Function to navigate to the next screen
+		this.props.navigation.navigate(InfographicScreen);
+	  };
+
 	render() {
 		return (
 			<View style={styles.background}>
@@ -33,8 +38,12 @@ export default class LinkScreen extends Component {
 						<Text style={styles.title_format}>Is this the right icon?</Text>
 					</View>
 
-					<Text style={{textAlign:'center'}}>image</Text>
-					<Text style={{textAlign:'center'}}>uhhhh</Text>
+					{/* <Text style={{textAlign:'center'}}>image</Text>
+					<Text style={{textAlign:'center'}}>uhhhh</Text> */}
+
+					<View style={styles.symbol_container}>
+                    <Image style={styles.symbol} source={require('../assets/images/waste_electricals.png' )} />
+                    </View> 
 
 					<View style={styles.button_row}>
 						<View style={{flexDirection:'row'}}>
@@ -42,7 +51,7 @@ export default class LinkScreen extends Component {
 								<Text style={styles.no_format}>No</Text>
 							</TouchableOpacity>
 							
-							<TouchableOpacity style={styles.yes_button} onPress={this.toggleModal}>
+							<TouchableOpacity style={styles.yes_button} onPress={this.changeScreen}>
 								<Text style={styles.yes_format}>Yes</Text>
 							</TouchableOpacity>
 						</View>
@@ -70,7 +79,18 @@ const styles = StyleSheet.create({
 		justifyContent: 'center', 
 		alignItems: 'center',
     },
-    
+	
+	symbol_container:
+	{
+		alignItems: 'center',
+	},
+
+	symbol:
+	{
+		height:200, 
+		width:200
+	},
+
     image_container:
     {
         borderWidth: 5,
@@ -129,6 +149,7 @@ const styles = StyleSheet.create({
 	no_button:
 	{
 		backgroundColor:'white',
+		height: 50,
 		width:'40%', 
 		borderColor:'#41A56C', 
 		borderWidth: 1,
@@ -141,7 +162,9 @@ const styles = StyleSheet.create({
 	{
 		color:'#41A56C',
 		textAlign:'center',
-		padding:10
+		padding:10,
+		// marginTop: 2,
+		fontSize: 18
 	},
 
 	yes_button:
@@ -149,14 +172,17 @@ const styles = StyleSheet.create({
 		backgroundColor:'#41A56C',
 		width:'40%', 
 		borderRadius: 30, 
-		marginLeft: 5
+		marginLeft: 5,
+		
 	},
 
 	yes_format:
 	{
 		color:'white',
 		textAlign:'center',
-		padding:10
+		padding:10,
+		// marginTop: 2,
+		fontSize: 18
 	}
 
 });
