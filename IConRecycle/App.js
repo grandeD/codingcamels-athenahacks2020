@@ -1,5 +1,21 @@
 import * as React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import {
+	View,
+	Text,
+	StyleSheet,
+	ScrollView,
+	ActivityIndicator,
+	Button,
+	FlatList,
+	Clipboard
+} from 'react-native';
+import { ImagePicker, Permissions } from 'expo';
+import uuid from 'uuid';
+
+import Environment from './config/environment';
+import firebase from './config/firebase';
+
+import { Platform, StatusBar } from 'react-native';
 import { SplashScreen } from 'expo';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
