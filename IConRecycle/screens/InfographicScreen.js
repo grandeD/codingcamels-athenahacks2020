@@ -1,23 +1,23 @@
 import * as React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { Card } from 'react-native-cards';
 import { ScrollView } from 'react-native-gesture-handler';
+import { Card } from 'react-native-cards';
 import { FloatingAction } from "react-native-floating-action";
-import { Icon } from 'react-native-elements'
-import {information} from '../assets/data/array.js'
+import { Icon } from 'react-native-elements';
+import { information } from '../assets/data/array.js';
 
 
 
 export default function InfographicScreen() {
   return (
     <View style={styles.container}>
-        {showInfo("Recyclable Aluminum")}
+        {showInfo("Waste Electricals")}
     </View>
   );
 }
 
 function showInfo( iconName ) {
-    for (var i=0; i < information.length; i++) {
+    for (let i=0; i < information.length; i++) {
         if (iconName == information[i].name) {
             return (
                 <View style={styles.container}>
@@ -25,7 +25,7 @@ function showInfo( iconName ) {
                         <View style={styles.container1}>
                             <Image
                                 style={styles.iconImage}
-                                source={{uri: information[i].icon}}
+                                source={information[i].icon}
                             />
                         </View>
                         <Card style={styles.cardCon}>
@@ -64,10 +64,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#81CEA2',
   },
   iconImage: {
-    margin: 50,
-    width: 100,
-    height: 100
+    marginLeft: 20,
+    marginTop: 36,
+    width: 150,
+    height: 150
   },
+  
   cardCon: {
     margin: 20,
     borderRadius: 20
