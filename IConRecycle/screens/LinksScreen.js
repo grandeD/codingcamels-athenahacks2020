@@ -64,6 +64,7 @@ export default class LinkScreen extends Component {
 							</View>
 						</View>
 
+
 					</Modal>
 				</View>
 			</View>
@@ -73,11 +74,13 @@ export default class LinkScreen extends Component {
 
 
 const styles = StyleSheet.create({
+
     background:
     { 
         flex: 1,
         backgroundColor: '#81CEA2',
     },
+
 
 	container:
 	{
@@ -133,10 +136,8 @@ const styles = StyleSheet.create({
 	modal_title:
 	{ 
 		flex: 1,
-		// justifyContent:'center',
-		// position:'absolute',
-		// top:60, 
-		padding: 45
+		margin:60,
+    alignItems: 'center',
 	},
 
 	title_format:
@@ -150,10 +151,11 @@ const styles = StyleSheet.create({
 	{ 
 		flex: 1,
 		justifyContent:'center',
+
 		position:'relative',
 		alignItems: 'center',
 		bottom:0,
-		// padding: 20
+
 	},
 
 	no_button:
@@ -164,8 +166,7 @@ const styles = StyleSheet.create({
 		borderColor:'#41A56C', 
 		borderWidth: 1,
 		borderRadius: 30, 
-		// marginLeft: 35,
-		margin:5
+		marginRight:5
 	},
 
 	no_format:
@@ -183,7 +184,6 @@ const styles = StyleSheet.create({
 		width:'40%', 
 		borderRadius: 30, 
 		margin: 5,
-		
 	},
 
 	yes_format:
