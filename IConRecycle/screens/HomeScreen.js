@@ -9,7 +9,8 @@ import {
 	Share,
 	FlatList,
 	Clipboard,
-	Image
+  Image,
+  Dimensions
 } from 'react-native';
 // import { ImagePicker, Permissions } from 'expo';
 import * as ImagePicker from 'expo-image-picker';
@@ -19,39 +20,59 @@ import uuid from 'uuid';
 import Environment from '.././config/environment';
 import firebase from '.././config/firebase';
 
+import Modal from "react-native-modal";
+
+function guidGenerator() {
+  var S4 = function() {
+     return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+  };
+  return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+}
+
 async function uploadImageAsync(uri) {
+  console.log("URI:  " + uri);
 	const blob = await new Promise((resolve, reject) => {
+    console.log(firebase.database().app.name);
+    
 		const xhr = new XMLHttpRequest();
 		xhr.onload = function() {
-			resolve(xhr.response);
+      resolve(xhr.response);
 		};
 		xhr.onerror = function(e) {
+
 			console.log(e);
 			reject(new TypeError('Network request failed'));
-		};
+    };
+    
+  
 		xhr.responseType = 'blob';
 		xhr.open('GET', uri, true);
 		xhr.send(null);
 	});
 
+  
 	const ref = firebase
 		.storage()
 		.ref()
-		.child(uuid.v4());
+		.child(guidGenerator());
 	const snapshot = await ref.put(blob);
 
 	blob.close();
-
-	return await snapshot.ref.getDownloadURL();
+  
+  return await snapshot.ref.getDownloadURL();
+  
 }
+
+
 
 class HomeScreen extends Component {
 	state = {
 		image: null,
 		uploading: false,
-		googleResponse: null
-	};
-
+    googleResponse: null,
+    isModalVisible: true
+  };
+  
 	async componentDidMount() {
 		await Permissions.askAsync(Permissions.CAMERA_ROLL);
 		await Permissions.askAsync(Permissions.CAMERA);
@@ -242,14 +263,31 @@ class HomeScreen extends Component {
 		} catch (error) {
 			console.log(error);
 		}
-	};
+  };
+  
+  toggleModal = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+  };
 
 	render() {
-		let { image } = this.state;
+    let { image } = this.state;
+    let { isModalVisible } = this.state;
+
 
 		return (
 			<View style={styles.container}>
 				<ScrollView contentContainerStyle={styles.contentContainer}>
+
+        <Modal isVisible={isModalVisible} style={{backgroundColor:'white', marginTop: Dimensions.get('window').height / 4, maxHeight:Dimensions.get('window').height / 3}}>
+          <View style={{ flex: 1 }}>
+            <Text style={{marginTop: 10, marginBottom: 20, marginLeft: 20, fontSize: 30, fontWeight: 'bold'}}>Let&#39;s get started!</Text>
+            <Text style={{marginBottom: 5, marginLeft: 20, fontSize: 20}}>1. Align the icon in the box.</Text>
+            <Text style={{marginBottom: 5, marginLeft: 20, fontSize: 20}}>2. Take a picture and crop to your liking.</Text>
+            <Text style={{marginBottom: 5, marginLeft: 20, fontSize: 20}}>3. View the icon&#39;s information!</Text>
+            <Button title="OKAY" onPress={this.toggleModal} />
+          </View>
+        </Modal>
+
 					<View style={styles.getStartedContainer}>
 						{image ? null : (
 							<Text style={styles.getStartedText}>Logo Detection App</Text>
