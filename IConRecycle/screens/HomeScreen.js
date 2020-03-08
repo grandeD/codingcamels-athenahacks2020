@@ -1,94 +1,123 @@
-import * as React from 'react';
+import React, {Component} from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
 
 import { MonoText } from '../components/StyledText';
 
-export default function HomeScreen() {
+export default class HomeScreen extends Component {
+
+changeScreen = () => {
+    //Function to navigate to the next screen
+    this.props.navigation.navigate("Info");
+    };
+
+render() {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
         <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
-          />
-        </View>
-
-        <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
-
-          <Text style={styles.getStartedText}>Open up the code for this screen:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/HomeScreen.js</MonoText>
-          </View>
-
-          <Text style={styles.getStartedText}>
-            Change any of the text, save the file, and your app will automatically reload.
-          </Text>
-        </View>
-
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
+          <TouchableOpacity onPress={this.changeScreen}>
+            <Image
+              source={require('../assets/images/aluminum.png')}
+              style={styles.welcomeImage}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.changeScreen}>
+            <Image
+              source={require('../assets/images/compostable.png')}
+              style={styles.welcomeImage}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.changeScreen}>
+            <Image
+              source={require('../assets/images/glass.png')}
+              style={styles.welcomeImage}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.changeScreen}>
+            <Image
+              source={require('../assets/images/green_dot.png')}
+              style={styles.welcomeImage}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.changeScreen}>
+            <Image
+              source={require('../assets/images/mobius_loop.png')}
+              style={styles.welcomeImage}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.changeScreen}>
+            <Image
+              source={require('../assets/images/steel.png')}
+              style={styles.welcomeImage}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.changeScreen}>
+            <Image
+              source={require('../assets/images/tidyman.png')}
+              style={styles.welcomeImage}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.changeScreen}>
+            <Image
+              source={require('../assets/images/waste_electricals.png')}
+              style={styles.welcomeImage}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.changeScreen}>
+            <Image
+              source={require('../assets/images/widely_recycled.png')}
+              style={styles.welcomeImage}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.changeScreen}>
+            <Image
+              source={require('../assets/images/recycle_one.png')}
+              style={styles.welcomeImage}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.changeScreen}>
+            <Image
+              source={require('../assets/images/recycle_two.png')}
+              style={styles.welcomeImage}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image
+              source={require('../assets/images/recycle_three.png')}
+              style={styles.welcomeImage}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.changeScreen}>
+            <Image
+              source={require('../assets/images/recycle_four.png')}
+              style={styles.welcomeImage}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.changeScreen}>
+            <Image
+              source={require('../assets/images/recycle_five.png')}
+              style={styles.welcomeImage}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.changeScreen}>
+            <Image
+              source={require('../assets/images/recycle_six.png')}
+              style={styles.welcomeImage}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.changeScreen}>
+            <Image
+              source={require('../assets/images/recycle_seven.png')}
+              style={styles.welcomeImage}
+            />
           </TouchableOpacity>
         </View>
       </ScrollView>
-
-      <View style={styles.tabBarInfoContainer}>
-        <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-        <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <MonoText style={styles.codeHighlightText}>navigation/BottomTabNavigator.js</MonoText>
-        </View>
-      </View>
     </View>
   );
-}
-
-HomeScreen.navigationOptions = {
-  header: null,
-};
-
-function DevelopmentModeNotice() {
-  if (__DEV__) {
-    const learnMoreButton = (
-      <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
-        Learn more
-      </Text>
-    );
-
-    return (
-      <Text style={styles.developmentModeText}>
-        Development mode is enabled: your app will be slower but you can use useful development
-        tools. {learnMoreButton}
-      </Text>
-    );
-  } else {
-    return (
-      <Text style={styles.developmentModeText}>
-        You are not in development mode: your app will run at full speed.
-      </Text>
-    );
-  }
-}
-
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/workflow/development-mode/');
-}
-
-function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change'
-  );
-}
-
+}}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
