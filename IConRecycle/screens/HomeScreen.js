@@ -112,7 +112,6 @@ class HomeScreen extends Component {
 		if (!image) {
 			return;
 		}
-
 		return (
 			<View
 				style={{
@@ -122,11 +121,7 @@ class HomeScreen extends Component {
 					elevation: 2
 				}}
 			>
-				<Button
-					style={{ marginBottom: 10 }}
-					onPress={() => this.submitToGoogle()}
-					title="Analyze!"
-				/>
+				
 
 				<View
 					style={{
@@ -141,13 +136,22 @@ class HomeScreen extends Component {
 				>
 					<Image source={{ uri: image }} style={{ width: 250, height: 250 }} />
 				</View>
+
+				<View style={{ fontFamily: 'Avenir',borderRadius: 10,backgroundColor: 'white' , paddingTop: 15, paddingBottom:15, margin:30}}>
+				<Button
+					// style={{ marginTop: 20 }}
+					onPress={() => this.submitToGoogle()}
+					title="Analyze!"
+				/>
+				</View>
+
 				<Text
 					onPress={this._copyToClipboard}
 					onLongPress={this._share}
 					style={{ paddingVertical: 10, paddingHorizontal: 10 }}
 				/>
 
-				<Text>Raw JSON:</Text>
+				{/* <Text>Raw JSON:</Text> */}
 
 				{googleResponse && (
 					<Text
@@ -155,7 +159,7 @@ class HomeScreen extends Component {
 						onLongPress={this._share}
 						style={{ paddingVertical: 10, paddingHorizontal: 10 }}
 					>
-						{JSON.stringify(googleResponse.responses)}
+						
 					</Text>
 				)}
 			</View>
@@ -182,6 +186,8 @@ class HomeScreen extends Component {
 	};
 
 	_takePhoto = async () => {
+		// this.setState({ isModalVisible: false});
+		// this.toggleModal();
 		let pickerResult = await ImagePicker.launchCameraAsync({
 			allowsEditing: true,
 			aspect: [4, 3]
@@ -191,11 +197,12 @@ class HomeScreen extends Component {
 	};
 
 	_pickImage = async () => {
+		
 		let pickerResult = await ImagePicker.launchImageLibraryAsync({
 			allowsEditing: true,
 			aspect: [4, 3]
 		});
-
+		
 		this._handleImagePicked(pickerResult);
 	};
 
@@ -278,35 +285,38 @@ class HomeScreen extends Component {
 			<View style={styles.container}>
 				<ScrollView contentContainerStyle={styles.contentContainer}>
 
-        <Modal isVisible={isModalVisible} style={{backgroundColor:'white', marginTop: Dimensions.get('window').height / 4, maxHeight:Dimensions.get('window').height / 3}}>
+        <Modal isVisible={isModalVisible} style={{borderRadius:20, padding:3,backgroundColor:'white', marginTop: Dimensions.get('window').height / 4, maxHeight:Dimensions.get('window').height / 3}}>
           <View style={{ flex: 1 }}>
-            <Text style={{marginTop: 10, marginBottom: 20, marginLeft: 20, fontSize: 30, fontWeight: 'bold'}}>Let&#39;s get started!</Text>
-            <Text style={{marginBottom: 5, marginLeft: 20, fontSize: 20}}>1. Align the icon in the box.</Text>
-            <Text style={{marginBottom: 5, marginLeft: 20, fontSize: 20}}>2. Take a picture and crop to your liking.</Text>
-            <Text style={{marginBottom: 5, marginLeft: 20, fontSize: 20}}>3. View the icon&#39;s information!</Text>
+            <Text style={{marginTop: 30, marginBottom: 30, marginLeft: 20, fontSize: 30, fontWeight: 'bold'}}>Let&#39;s get started!</Text>
+            <Text style={{marginBottom: 5, marginLeft: 15, fontSize: 20, padding:5}}>1. Align the icon in the box.</Text>
+            <Text style={{marginBottom: 5, marginLeft: 15, fontSize: 20, padding:5}}>2. Take a picture & crop to your liking.</Text>
+            <Text style={{marginBottom: 5, marginLeft: 15, fontSize: 20,padding:5, marginBottom:30}}>3. View the icon&#39;s information!</Text>
             <Button title="OKAY" onPress={this.toggleModal} />
           </View>
         </Modal>
-
+					
 					<View style={styles.getStartedContainer}>
 						{image ? null : (
-							<Text style={styles.getStartedText}>Logo Detection App</Text>
+							// <Text style={styles.getStartedText}>IConRecycle</Text>
+							<Image style={{height: 250, width: 300}} source={require('../assets/images/iconrecycle.png')}/>
 						)}
 					</View>
 
 					<View style={styles.helpContainer}>
-						<View style={{ margin: 20 }}>
+						<View style={{ fontFamily: 'Avenir',borderRadius: 10,backgroundColor: 'white' , padding: 15, }}>
 							<Button
 								onPress={this._pickImage}
 								title="Pick an image from camera roll"
 								color="#3b5998"
 							/>
 						</View>
+						<View style={{ fontFamily: 'Avenir',borderRadius: 10,backgroundColor: 'white' , padding: 15, margin:10}}>
 						<Button
 							onPress={this._takePhoto}
-							title="Click a photo"
+							title="Take a photo"
 							color="#1985bc"
 						/>
+						</View>
 
 						{this.state.googleResponse && (
 							<FlatList
@@ -324,6 +334,7 @@ class HomeScreen extends Component {
 						{this._maybeRenderImage()}
 						{this._maybeRenderUploadingOverlay()}
 					</View>
+					
 				</ScrollView>
 			</View>
 		);
@@ -335,9 +346,14 @@ export default HomeScreen;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#ebebeb',
+		backgroundColor: '#81CEA2',
 		paddingBottom: 10
 	},
+	container1: {
+		top: 0,
+		height: 200,
+		backgroundColor: '#81CEA2',
+	  },
 	developmentModeText: {
 		marginBottom: 20,
 		color: 'rgba(0,0,0,0.4)',
@@ -351,24 +367,31 @@ const styles = StyleSheet.create({
 
 	getStartedContainer: {
 		alignItems: 'center',
-		marginHorizontal: 50,
-		marginVertical: 50
+		// marginHorizontal: 50,
+		// marginVertical: 50,
+		marginTop:100,
+		marginBottom:10
+		// backgroundColor: '#81CEA2'
 	},
 
 	getStartedText: {
-		fontSize: 24,
+		marginTop:140,
+		fontSize: 48,
 		color: '#000',
 		fontWeight: 'bold',
-		textAlign: 'center'
+		textAlign: 'center',
+		fontFamily: 'Avenir',
 	},
 
 	helpContainer: {
-		marginTop: 15,
-		alignItems: 'center'
+		// marginTop: 1,
+		alignItems: 'center',
+		
 	},
 
 	logoText: {
 		fontSize: 20,
-		fontWeight: '600'
+		fontWeight: '600',
+		fontFamily: 'Avenir',
 	}
 });
