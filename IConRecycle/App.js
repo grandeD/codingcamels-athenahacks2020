@@ -4,19 +4,13 @@ import { SplashScreen } from 'expo';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
-// import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import useLinking from './navigation/useLinking';
 
-import { createStackNavigator, createAppContainer } from "react-navigation";
-import InfographicScreen from '../screens/InfographicScreen';
 
-// const AppNavigator  = createStackNavigator({
-//   Infographic: { screen: InfographicScreen },
-  
-// });
-// export default createAppContainer(AppNavigator);
+
 const Stack = createStackNavigator();
 
 export default function App(props) {
@@ -24,8 +18,6 @@ export default function App(props) {
   const [initialNavigationState, setInitialNavigationState] = React.useState();
   const containerRef = React.useRef();
   const { getInitialState } = useLinking(containerRef);
-
-  // createAppContainer(AppNavigator);
 
   // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
@@ -65,8 +57,6 @@ export default function App(props) {
           </Stack.Navigator>
         </NavigationContainer>
       </View>
-
-      
     );
   }
 }
