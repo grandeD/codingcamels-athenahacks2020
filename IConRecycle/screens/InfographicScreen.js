@@ -11,7 +11,8 @@ import { information } from '../assets/data/array.js';
 export default function InfographicScreen() {
   return (
     <View style={styles.container}>
-        {showInfo("Waste Electricals")}
+        {/* {showInfo("Waste Electricals")} */}
+        {showInfo(global.MyVar)}
     </View>
   );
 }
@@ -78,12 +79,12 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 20,
     fontWeight: 'bold',
-    fontFamily: 'Avenir',
+    // fontFamily: 'Avenir',
     fontSize: 18
   },
   explanationCon: {
     margin: 20,
-    fontFamily: 'Avenir',
+    // fontFamily: 'Avenir',
     fontSize: 15
   },
 
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 20,
     fontWeight: 'bold',
-    fontFamily: 'Avenir',
+    // fontFamily: 'Avenir',
     fontSize: 18
   },
   cardCon1: {

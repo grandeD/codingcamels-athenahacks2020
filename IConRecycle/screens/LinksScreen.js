@@ -3,6 +3,12 @@ import { Button, Text, View, Dimensions, TouchableOpacity, StyleSheet, Image } f
 import Modal from "react-native-modal";
  
 export default class LinkScreen extends Component {
+	constructor() {
+		super();
+		//Setting up global variable
+		global.MyVar = "Plastic #1 - PETE or PET (Polyethylene Terephthalate)";
+	  }
+
 	state = {
 		isModalVisible: false
 	};
@@ -31,7 +37,7 @@ export default class LinkScreen extends Component {
                     
                     <Text style={styles.loadingText}>L O A D I N G</Text>
 
-					<Button title="Show modal" onPress={this.toggleModal} />
+					<Button title={global.MyVar} onPress={this.toggleModal} />
 					<Modal isVisible={this.state.isModalVisible} style={styles.modal_container}>
 
 					<View style={styles.modal_title}>
@@ -51,7 +57,7 @@ export default class LinkScreen extends Component {
 								<Text style={styles.no_format}>No</Text>
 							</TouchableOpacity>
 							
-							<TouchableOpacity style={styles.yes_button} onPress={this.changeScreen}>
+							<TouchableOpacity style={styles.yes_button} onPress={this.toggleModal}>
 								<Text style={styles.yes_format}>Yes</Text>
 							</TouchableOpacity>
 						</View>
@@ -82,13 +88,17 @@ const styles = StyleSheet.create({
 	
 	symbol_container:
 	{
-		alignItems: 'center',
+		// alignItems: 'center',
+		position: 'absolute',
+		flex: 1,
+		margin: 35
+		// justifyContent:'center',
 	},
 
 	symbol:
 	{
-		height:200, 
-		width:200
+		height:250, 
+		width:250
 	},
 
     image_container:
@@ -101,9 +111,6 @@ const styles = StyleSheet.create({
     image: {
         height: 150,
         width: 150,
-        borderWidth: 10,
-        borderColor: 'black'
-        
     },
 
     loadingText:
@@ -125,10 +132,10 @@ const styles = StyleSheet.create({
 	modal_title:
 	{ 
 		flex: 1,
-		justifyContent:'center',
-		position:'absolute',
-		top:60, 
-		marginLeft:70
+		// justifyContent:'center',
+		// position:'absolute',
+		// top:60, 
+		padding: 45
 	},
 
 	title_format:
@@ -142,8 +149,10 @@ const styles = StyleSheet.create({
 	{ 
 		flex: 1,
 		justifyContent:'center',
-		position:'absolute',
-		bottom:60
+		position:'relative',
+		alignItems: 'center',
+		bottom:0,
+		// padding: 20
 	},
 
 	no_button:
@@ -154,8 +163,8 @@ const styles = StyleSheet.create({
 		borderColor:'#41A56C', 
 		borderWidth: 1,
 		borderRadius: 30, 
-		marginLeft: 35,
-		marginRight:5
+		// marginLeft: 35,
+		margin:5
 	},
 
 	no_format:
@@ -163,7 +172,7 @@ const styles = StyleSheet.create({
 		color:'#41A56C',
 		textAlign:'center',
 		padding:10,
-		// marginTop: 2,
+		margin: 2,
 		fontSize: 18
 	},
 
@@ -172,7 +181,7 @@ const styles = StyleSheet.create({
 		backgroundColor:'#41A56C',
 		width:'40%', 
 		borderRadius: 30, 
-		marginLeft: 5,
+		margin: 5,
 		
 	},
 
@@ -181,7 +190,7 @@ const styles = StyleSheet.create({
 		color:'white',
 		textAlign:'center',
 		padding:10,
-		// marginTop: 2,
+		margin: 2,
 		fontSize: 18
 	}
 
