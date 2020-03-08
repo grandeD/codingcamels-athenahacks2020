@@ -19,7 +19,8 @@ export default class LinkScreen extends Component {
 
 	changeScreen = () => {
 		//Function to navigate to the next screen
-		this.props.navigation.navigate(InfographicScreen);
+		this.props.navigation.navigate('Info');
+		this.toggleModal();
 	  };
 
 	render() {
@@ -40,28 +41,28 @@ export default class LinkScreen extends Component {
 					<Button title={global.MyVar} onPress={this.toggleModal} />
 					<Modal isVisible={this.state.isModalVisible} style={styles.modal_container}>
 
-					<View style={styles.modal_title}>
-						<Text style={styles.title_format}>Is this the right icon?</Text>
-					</View>
-
-					{/* <Text style={{textAlign:'center'}}>image</Text>
-					<Text style={{textAlign:'center'}}>uhhhh</Text> */}
-
-					<View style={styles.symbol_container}>
-                    <Image style={styles.symbol} source={require('../assets/images/waste_electricals.png' )} />
-                    </View> 
-
-					<View style={styles.button_row}>
-						<View style={{flexDirection:'row'}}>
-							<TouchableOpacity style={styles.no_button} onPress={this.toggleModal}>
-								<Text style={styles.no_format}>No</Text>
-							</TouchableOpacity>
-							
-							<TouchableOpacity style={styles.yes_button} onPress={this.toggleModal}>
-								<Text style={styles.yes_format}>Yes</Text>
-							</TouchableOpacity>
+						<View style={styles.modal_title}>
+							<Text style={styles.title_format}>Is this the right icon?</Text>
 						</View>
-					</View>
+
+						{/* <Text style={{textAlign:'center'}}>image</Text>
+						<Text style={{textAlign:'center'}}>uhhhh</Text> */}
+
+						<View style={styles.symbol_container}>
+						<Image style={styles.symbol} source={require('../assets/images/waste_electricals.png' )} />
+						</View> 
+
+						<View style={styles.button_row}>
+							<View style={{flexDirection:'row'}}>
+								<TouchableOpacity style={styles.no_button} onPress={this.toggleModal}>
+									<Text style={styles.no_format}>No</Text>
+								</TouchableOpacity>
+								
+								<TouchableOpacity style={styles.yes_button} onPress={this.changeScreen}>
+									<Text style={styles.yes_format}>Yes</Text>
+								</TouchableOpacity>
+							</View>
+						</View>
 
 					</Modal>
 				</View>
@@ -111,6 +112,7 @@ const styles = StyleSheet.create({
     image: {
         height: 150,
         width: 150,
+      
     },
 
     loadingText:
