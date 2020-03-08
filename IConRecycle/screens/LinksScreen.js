@@ -13,7 +13,7 @@ export default class LinkScreen extends Component {
 
 	changeScreen = () => {
 		//Function to navigate to the next screen
-		this.props.navigation.navigate(InfographicScreen);
+		this.props.navigation.navigate("Info");
 	  };
 
 	render() {
@@ -100,10 +100,7 @@ const styles = StyleSheet.create({
 
     image: {
         height: 150,
-        width: 150,
-        borderWidth: 10,
-        borderColor: 'black'
-        
+        width: 150        
     },
 
     loadingText:
