@@ -3,11 +3,6 @@ import { Button, Text, View, Dimensions, TouchableOpacity, StyleSheet, Image } f
 import Modal from "react-native-modal";
  
 export default class LinkScreen extends Component {
-	constructor() {
-		super();
-		//Setting up global variable
-		global.MyVar = "Plastic #1 - PETE or PET (Polyethylene Terephthalate)";
-	  }
 
 	state = {
 		isModalVisible: false
