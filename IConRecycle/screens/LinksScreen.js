@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Button, Text, View, Dimensions, TouchableOpacity, StyleSheet, Image } from "react-native";
 import Modal from "react-native-modal";
- 
+import { information } from '../assets/data/array.js';
+import InfographicScreen from '../screens/InfographicScreen';
+
 export default class LinkScreen extends Component {
 
 	state = {
@@ -10,11 +12,20 @@ export default class LinkScreen extends Component {
 
 	toggleModal = () => {
 		this.setState({ isModalVisible: !this.state.isModalVisible });
+		console.log(global.MyVar);
 	};
 
 	changeScreen = () => {
 		//Function to navigate to the next screen
+		// InfographicScreen();
 		this.props.navigation.navigate('Info');
+		this.toggleModal();
+	  };
+
+	  changeScreenHome = () => {
+		//Function to navigate to the next screen
+		// InfographicScreen();
+		this.props.navigation.navigate('Home');
 		this.toggleModal();
 	  };
 
@@ -33,7 +44,7 @@ export default class LinkScreen extends Component {
                     
                     <Text style={styles.loadingText}>L O A D I N G</Text>
 
-					<Button title={global.MyVar} onPress={this.toggleModal} />
+					<Button title={information[global.MyVar].name} onPress={this.toggleModal} />
 					<Modal isVisible={this.state.isModalVisible} style={styles.modal_container}>
 
 						<View style={styles.modal_title}>
@@ -44,12 +55,12 @@ export default class LinkScreen extends Component {
 						<Text style={{textAlign:'center'}}>uhhhh</Text> */}
 
 						<View style={styles.symbol_container}>
-						<Image style={styles.symbol} source={require('../assets/images/waste_electricals.png' )} />
+						<Image style={styles.symbol} source={information[global.MyVar].icon} />
 						</View> 
 
 						<View style={styles.button_row}>
 							<View style={{flexDirection:'row'}}>
-								<TouchableOpacity style={styles.no_button} onPress={this.toggleModal}>
+								<TouchableOpacity style={styles.no_button} onPress={this.changeScreenHome}>
 									<Text style={styles.no_format}>No</Text>
 								</TouchableOpacity>
 								
@@ -58,6 +69,7 @@ export default class LinkScreen extends Component {
 								</TouchableOpacity>
 							</View>
 						</View>
+
 
 					</Modal>
 				</View>
@@ -68,11 +80,13 @@ export default class LinkScreen extends Component {
 
 
 const styles = StyleSheet.create({
+
     background:
     { 
         flex: 1,
         backgroundColor: '#81CEA2',
     },
+
 
 	container:
 	{
@@ -94,7 +108,7 @@ const styles = StyleSheet.create({
 	symbol:
 	{
 		height:250, 
-		width:250
+		width:250, margin: 25
 	},
 
     image_container:
@@ -128,27 +142,26 @@ const styles = StyleSheet.create({
 	modal_title:
 	{ 
 		flex: 1,
-		// justifyContent:'center',
-		// position:'absolute',
-		// top:60, 
-		padding: 45
+		marginTop:90,
+    alignItems: 'center',
 	},
 
 	title_format:
 	{
 		textAlign:'center', 
 		fontWeight: 'bold', 
-		fontSize:20
+		fontSize:25
 	},
 
 	button_row:
 	{ 
 		flex: 1,
 		justifyContent:'center',
+
 		position:'relative',
 		alignItems: 'center',
 		bottom:0,
-		// padding: 20
+
 	},
 
 	no_button:
@@ -159,8 +172,7 @@ const styles = StyleSheet.create({
 		borderColor:'#41A56C', 
 		borderWidth: 1,
 		borderRadius: 30, 
-		// marginLeft: 35,
-		margin:5
+		marginRight:5
 	},
 
 	no_format:
@@ -178,7 +190,6 @@ const styles = StyleSheet.create({
 		width:'40%', 
 		borderRadius: 30, 
 		margin: 5,
-		
 	},
 
 	yes_format:

@@ -1,1 +1,22 @@
-A web application created for Athena Hacks by the Coding Camels.
+Inspiration
+Everyone in the team has been trying their best to be environmentally conscious, but we’ve always worried about whether we were being as sustainable as we could possibly be. We want to recycle whenever possible, but there can be costly consequences for incorrectly sorted trash. Sometimes recycling incorrectly can be worse than just tossing things in the trash can because of risks to machinery and extra worker efforts to fish out misplaced trash. We wanted to make it easier for people to recycle, and that’s how IConRecycle came to be!
+
+What it does
+IConRecycle was created to help people learn more about the recycling icons on their trash, so that they could make well-informed decisions on their recycling. The icons are all meant to advise people on how to dispose of the objects that they’re printed on, and this mobile app will give users an easy interface to look up these images. Users will open the app, take a picture of the icon, and the app will identify the icon and return an infographic on what the icon means and how the product can be properly disposed of.
+
+How we built it
+We started working on IConRecycle by using ReactNative and Expo to create and run our mobile application. With the Expo Image Picker, we added the camera feature to our app and then focused on sending the pictures to a database with Google Firebase. From there, we used Google Firebase’s ML Kit AutoML Vision Edge to train a model to properly label recycling icons from a sample dataset.
+
+Challenges we ran into
+The team was fairly new to creating mobile applications, and the little bit of experience that some of us had in it was only in ReactNative. We were eager to work with AutoML to identify and label images since it suited our project well, but we struggled a little since it was our first time working with it. And after training a model to identify recycling icons, we realized that AutoML Vision only worked with iOS and Android applications. That was a difficult problem that we ultimately had to put on hold for now so that we could improve on the remaining functionality.
+
+Accomplishments that we're proud of
+As mentioned in our challenges part of our team wasn't familiar with ReactNative and for those who had seen it, it had been a while. But we learned as we went and were able to accomplish a good amount in such a short amount of time that we are proud of every screen, modal, and button that was implemented. Every bit of progress was exciting! Even though we were not able to fully implement the AutoML Vision Image Classification in our mobile application, we still managed to train the data and test it against photos taken from the mobile app uploaded to Firebase.
+
+What we learned
+With this project, everyone was able to strengthen their skills in ReactNative as well as in GitHub. We all studied ReactNative syntax so that we could recreate our mockups, and the more experienced GitHub users on the team helped the others create branches and push our contributions to the team repository. And in creating the infographics for the recycling icons, we learned a lot more about proper recycling habits!
+
+What's next for IConRecycle
+First and foremost, we’d like to connect the AutoML Vision API with our Firebase database so that we don't need to use the web console to get the results. This will allow for a more seamless mobile experience for the user. Then we’d like to train our AutoML model with more image data, so that the accuracy of our test data model is more accurate for classification. And of course, we'd like to tidy up and improve UI elements for a better user experience!
+
+Don't say I can't recycle, say I CAN recycle with IConRecycle :)

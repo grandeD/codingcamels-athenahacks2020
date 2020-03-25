@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { Component } from "react";
+
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Card } from 'react-native-cards';
@@ -8,51 +9,78 @@ import { information } from '../assets/data/array.js';
 
 
 
-export default function InfographicScreen() {
-  return (
-    <View style={styles.container}>
-        {/* {showInfo("Waste Electricals")} */}
-        {showInfo(global.MyVar)}
-    </View>
-  );
-}
+// export default function InfographicScreen() {
+  export default class InfographicScreen extends Component {
+    constructor(props) {
+      super(props)    
+     this.state = {
+       lastRefresh: Date(Date.now()).toString(),
+     }
+        this.refreshScreen = this.refreshScreen.bind(this)
+       
+       }
 
-function showInfo( iconName ) {
-    for (let i=0; i < information.length; i++) {
-        if (iconName == information[i].name) {
-            return (
-                <View style={styles.container}>
-                    <ScrollView style={styles.container}>
-                        <View style={styles.container1}>
-                            <Image
-                                style={styles.iconImage}
-                                source={information[i].icon}
-                            />
-                        </View>
-                        <Card style={styles.cardCon}>
-                            <Text style={styles.titleCon}>{information[i].name}</Text>
-                            <Text style={styles.explanationCon}>
-                                {information[i].description}
-                            </Text>
-                        </Card>
-                        <Card style={styles.cardCon1}>
-                            <Text style={styles.titleCon1}>How to recycle:</Text>
-                            <Text style={styles.explanationCon}>
-                                {information[i].recycleInfo}
-                            </Text>
-                        </Card>
-                    </ScrollView>
-                    <FloatingAction
-                        color={'#41A56C'}
-                        floatingIcon={
-                        <Icon
-                            name='camera'
-                            type='font-awesome' color='white'/>}/>
-                </View>            
-            );
+       refreshScreen = () => {
+         console.log('ajflks');
+         this.setState({ lastRefresh: Date(Date.now()).toString() })
+       } 
+
+    
+
+       showInfo = (iconName) => {
+        
+      // showInfo( iconName ) {
+        for (let i=0; i < information.length; i++) {
+            if (iconName == information[i].name) {
+                return (
+                    <View style={styles.container}>
+                        <ScrollView style={styles.container}>
+                            <View style={styles.container1}>
+                                <Image
+                                    style={styles.iconImage}
+                                    source={information[i].icon}
+                                />
+                            </View>
+                            <Card style={styles.cardCon}>
+                                <Text style={styles.titleCon}>{information[i].name}</Text>
+                                <Text style={styles.explanationCon}>
+                                    {information[i].description}
+                                </Text>
+                            </Card>
+                            <Card style={styles.cardCon1}>
+                                <Text style={styles.titleCon1}>How to recycle:</Text>
+                                <Text style={styles.explanationCon}>
+                                    {information[i].recycleInfo}
+                                </Text>
+                            </Card>
+                        </ScrollView>
+                        <FloatingAction
+                            color={'#41A56C'}
+                            onPressMain={this.refreshScreen}
+                            overlayColor='rgba(68, 68, 68, 0)'
+                            floatingIcon={
+                            <Icon
+                                name='refresh'
+                                type='font-awesome' color='white'/>}/>
+
+                           
+                    </View>            
+                );
+            }
         }
     }
+ 
+  render() {
+    return (
+      <View style={styles.container}>
+          {/* {showInfo("Waste Electricals")} */}
+          {this.showInfo(information[global.MyVar].name)}
+      </View>
+    );
+  }
 }
+
+
 
 const styles = StyleSheet.create({
   container: {

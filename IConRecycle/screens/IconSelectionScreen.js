@@ -5,18 +5,20 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { MonoText } from '../components/StyledText';
 import { information } from '../assets/data/array.js';
 
-export default class HomeScreen extends Component {
+export default class IconSelectionScreen extends Component {
 
 constructor() {
     super();
     //Setting up global variable
-    global.MyVar = "";
+    global.MyVar = 0;
     }
 
 changeScreen = (index) => {
     //Function to navigate to the next screen
+    console.log(index);
+    global.MyVar = index; 
     this.props.navigation.navigate("Links");
-    global.MyVar = information[index].name;
+    
     };
 
 render() {

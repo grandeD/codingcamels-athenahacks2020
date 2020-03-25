@@ -4,6 +4,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import InfographicScreen from '../screens/InfographicScreen';
+import IconSelectionScreen from '../screens/IconSelectionScreen';
 
 
 const BottomTab = createBottomTabNavigator();
@@ -25,6 +26,14 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
         }}
       />
+        <BottomTab.Screen
+        name="Icons"
+        component={IconSelectionScreen}
+        options={{
+          title: 'Icons',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+        }}
+        />
       <BottomTab.Screen
         name="Links"
         component={LinksScreen}
@@ -33,6 +42,7 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
         }}
       />
+
       <BottomTab.Screen
         name="Info"
         component={InfographicScreen}
@@ -41,6 +51,8 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
         }}
       />
+
+
 
     </BottomTab.Navigator>
   );
@@ -52,8 +64,10 @@ function getHeaderTitle(route) {
   switch (routeName) {
     case 'Home':
       return 'How to get started';
+    case 'Icons':
+        return 'Icons';
     case 'Links':
-      return 'Links to learn more';
+      return 'Loading';
     case 'Info':
       return 'Infographic Screen';
   }
